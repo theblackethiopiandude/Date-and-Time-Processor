@@ -1,0 +1,3 @@
+/home/eyosiyas/CLionProjects/Date and Time Processor/cmake-build-debug/CMakeFiles/Date_and_Time_Processor.dir
+/home/eyosiyas/CLionProjects/Date and Time Processor/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/eyosiyas/CLionProjects/Date and Time Processor/cmake-build-debug/CMakeFiles/rebuild_cache.dir
