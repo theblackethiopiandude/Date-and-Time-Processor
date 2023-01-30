@@ -30,7 +30,7 @@ int main() {
                 if (year % 4 == 0)
                     cout << "ZEMENE YOHANNES" << endl;
                 else if (year % 4 == 1)
-                    cout << "ZEMENE MATHIOS" << endl;
+                    cout << "ZEMENE MATHIAS" << endl;
                 else if (year % 4 == 2)
                     cout << "ZEMENE MARKOS" << endl;
                 else if (year % 4 == 3)
