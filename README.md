@@ -1,2 +1,11 @@
 # Date-and-Time-Processor
-with functionalites to convert EC to GC
+With Functionalities To 
+1.  Show local date and time
+2.  Convert Date(EC to GC or GC to EC) #on progress
+3.  Add n days to Date(EC  or GC)
+4.  Give Date difference between two dates( EC or GC)
+5.  Show Zemen(‘Yohannes’, ‘Markos’, …) for EC year
+6.  Detect Leap year(EC or GC)
+7.  Give The weekday for a given date(EC or GC) #on progress for EC
+8.  Show EC-GC calendar(Primary EC) #on progress
+9.  Show GC-EC calendar(Primary GC) #on progress
