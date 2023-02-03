@@ -32,7 +32,8 @@ int main() {
         cout << "> ";
         cin >> userInput;
         if (userInput == 1){
-
+                cout << __DATE__ << endl;
+                cout << __TIME__ << endl;
         }else if(userInput == 2){
             cout << "\t1. GC TO EC" << endl;
             cout << "\t2. EC TO GC" << endl;
@@ -102,7 +103,7 @@ int main() {
                 cout << "Enter Date in GC(dd/mm/yyyy): ";
                 cin >> day >> separator >> month >> separator >> year;
                 newDay = day;newMonth = month;newYear = year;
-                if (year % 100 != 0 && year % 4 == 0 || year % 400 == 0)
+                if (year % 100 != 0 && year % 4 == 0 || year % 400 == 0) // checks for leap year
                     sizeOfMonthGC[1] = 29;
                 cout<<"Number of Days You Want To Add: ";
                 cin >> numberOfDays;
@@ -446,10 +447,12 @@ int main() {
                 int value = 4 * (term / size(centuryChart));
                 int index = (day + monthChart[month - 1] + centuryChart[(term - value)] + (year%100) + ((year%100) / 4)) % 7;
                 if (year % 100 != 0 && year % 4 == 0 || year % 400 == 0) {
-                    if ((index - 1) == -1) {
-                        index = size(weekChart) ;
+                    if (month == 1 || month == 2){
+                        if ((index - 1) == -1) {
+                            index = size(weekChart) - 1 ;
+                        }
+                        index--;
                     }
-                    index--;
                 }
                 cout << monthsGC[month - 1] << " " << day << ", " << year << " is on " << weekChart[index] << endl;
             }else if (userInput == 2) {
@@ -479,10 +482,12 @@ int main() {
                 int value = 4 * (term / size(centuryChart));
                 int index = (newDay + monthChart[newMonth - 1] + centuryChart[(term - value)] + (newYear%100) + ((newYear%100) / 4)) % 7;
                 if (newYear % 100 != 0 && newYear % 4 == 0 || newYear % 400 == 0) {
-                    if ((index - 1) == -1) {
-                        index = size(weekChart) ;
+                    if (month == 1 || month == 2){
+                        if ((index - 1) == -1) {
+                            index = size(weekChart) - 1 ;
+                        }
+                        index--;
                     }
-                    index--;
                 }
                 cout << monthsEC[month - 1] << " " << day << ", " << year << " is on " << weekChart[index] << endl;
             } else{
