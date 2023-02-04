@@ -8,4 +8,4 @@ With Functionalities To
 6.  Detect Leap year(EC or GC)
 7.  Give The weekday for a given date(EC or GC) 
 8.  Show EC-GC calendar(Primary EC) #on progress
-9.  Show GC-EC calendar(Primary GC) #on progress
+9.  Show GC-EC calendar(Primary GC)

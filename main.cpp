@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 //#include <time.h>
 using namespace std;
 int main() {
@@ -27,7 +28,7 @@ int main() {
         cout << "\t6. Check Leap Year" << endl;
         cout << "\t7. The Weekday For A Given Date" << endl;
         cout << "\t8. " << endl;
-        cout << "\t9. " << endl;
+        cout << "\t9. Show GC-EC Calendar" << endl;
         cout << "\t10. Exit" << endl;
         cout << "> ";
         cin >> userInput;
@@ -496,7 +497,118 @@ int main() {
         }else if (userInput == 8){
             break;
         }else if (userInput == 9){
-            break;
+            string space, row = "__________________________________________________";
+            bool once;
+            int weekWidth, weekday, weekdayEC;
+            cout << "Enter year in GC: ";
+            cin >> year;
+            for (int month = 1, day=1; month <= size(sizeOfMonthGC); ++month, day=1) {
+                once = false;
+                weekWidth = 7;
+                cout << endl <<monthsGC[month - 1] << "  " << year << "\t\t\t\t\t";
+                for (int i = 1; i < size(ecToGcMonthMap); ++i) {
+
+                    if (ecToGcMonthMap[i] == month){
+                        cout << monthsEC[i - 1] << " - " << monthsEC[i] << " ";
+                    }
+                }
+                if (month == 9)
+                    cout << monthsEC[0] << " ";
+                if(month > 9)
+                    cout << year-8 << "-" << year-7 << endl;
+                else
+                    cout << year-8 << endl;
+                int term = year / 100;
+                int value = 4 * (term / size(centuryChart));
+                int index = (1 + monthChart[month - 1] + centuryChart[(term - value)] + (year%100) + ((year%100) / 4)) % 7;
+                if (year % 100 != 0 && year % 4 == 0  || year % 400 == 0) {
+                    if (month == 1  || month == 2){
+                        if ((index - 1) == -1) {
+                            index = size(weekChart) - 1 ;
+                        }
+                        index--;
+                    }
+
+                }
+                if ((year % 100 != 0 && year % 4 == 0 )|| (year  % 400 == 0)){ // checks for gregorian leap year
+                    sizeOfMonthEC[12] = 6;
+                    for (int i = 0; i < 2; ++i) // to decrement the off set by 1
+                        monthOffSetGCtoEC[i]--;
+                }
+
+
+                weekdayEC = index;
+                weekday = index;
+                cout << row << endl;
+                cout << setw(weekWidth) << left << "| SUN" << setw(weekWidth) <<"| MON" << setw(weekWidth) <<"| TUE" << setw(weekWidth) <<"| WEN" << setw(weekWidth) <<"| THU" << setw(weekWidth) <<"| FRI" << setw(weekWidth) <<"|  SAT |" << endl;
+                cout << row << endl;
+                for (int i = 0; i < index; ++i) {
+                    cout << setw(weekWidth) << "|    ";
+                }
+                int ethiopianDay = 1 + monthOffSetGCtoEC[month - 1];
+                for (day=1; day <= sizeOfMonthGC[month - 1]; day++) {
+
+                    if (day < 10){
+                        space = " ";
+                        weekWidth = 6;
+                    }
+
+                    else{
+                        weekWidth = 5;
+                        space = " ";
+                    }
+
+                    cout << setw(weekWidth) << "|" << day;
+                    if (weekday == 6){
+                        cout << "|";
+                        weekday = 0;
+                        cout << endl;
+                        cout << "|";
+                        if (not once){
+                            for (int i = 0; i < index; ++i) {
+                                cout << right <<setw(weekWidth+1) << "|";
+                            }once = true;
+                        }
+                        for (int i=weekdayEC; i < 7; i++, ethiopianDay++) {
+                            newMonth = gcToEcMonthMap[month - 1];
+                            while (sizeOfMonthEC[newMonth - 1] < ethiopianDay){
+                                ethiopianDay -= sizeOfMonthEC[newMonth - 1];
+                                newMonth++;
+                            }
+                            if (ethiopianDay < 10){
+                                weekWidth = 6;
+                            }
+                            else{
+                                weekWidth = 6;
+                            }
+                            cout << left <<setw(weekWidth) << ethiopianDay << "|" ;
+                            if ( weekdayEC == 6){
+                                weekdayEC = 0;
+                            } else
+                                weekdayEC++;
+                        }
+                        if (day == (sizeOfMonthGC[month - 1]))
+                            continue;
+                        else
+                            cout << endl << row << endl;
+                    }else
+                        weekday++;
+                    if (day == (sizeOfMonthGC[month - 1])){
+
+                        for (int i = weekday; i < 7; ++i) {
+                            cout << setw(weekWidth + 2) << "|    ";
+                        }
+                        cout << "|" << endl;
+                        for (int i = weekdayEC; i < 7; ++i) {
+                            cout << setw(weekWidth + 2) << "|    ";
+                        }
+                        cout << "|";
+                    }
+                }
+                cout << endl << row << endl << endl;
+
+
+            }
         }
         else if (userInput == 10){
             break;
